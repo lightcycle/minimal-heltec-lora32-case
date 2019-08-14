@@ -1,9 +1,9 @@
 include <shell.scad>
 
 difference() {
-    shell();
-    translate([0, 0, 6.5]) {
-        cube([60, 30, 10], center = true);
+    shell_slide_bottom();
+    translate([-7.7+60, 0, 0]) {
+        cube([60, 30, 20], center = true);
     }
 }
 
