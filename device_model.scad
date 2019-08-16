@@ -1,5 +1,7 @@
 pcb_thickness = 1.6;
 
+device();
+
 module device() {
     $fn = 20;
 
@@ -48,50 +50,50 @@ module slidex(x) {
 }
 
 module pcb1() {
-    translate([-25.1, -12.75, 0]) {
+    translate([-26, -12.75, 0]) {
         linear_extrude(height = pcb_thickness, center = true, convexity = 10) {
-            polygon(points=[[1.5,0],[47.2,0],[47.2,25.5],[1.5,25.5]]);
+            polygon(points=[[2,0],[48,0],[48,25.5],[2,25.5]]);
         }
     }
 }
 
 module pcb2() {
-    translate([-25.1, -12.75, 0]) {
+    translate([-26, -12.75, 0]) {
         linear_extrude(height = pcb_thickness, center = true, convexity = 10) {
-            polygon(points=[[-0.5,1.5],[1.5,0],[1.5,25.5],[-0.5,23.5]]);
+            polygon(points=[[0,1.5],[2,0],[2,25.5],[0,23.5]]);
         }
     }
 }
 
 module pcb3() {
-    translate([-25.1, -12.75, 0]) {
+    translate([-26, -12.75, 0]) {
         linear_extrude(height = pcb_thickness, center = true, convexity = 10) {
-            polygon(points=[[47.2,3.7],[51.2,7.7],[51.2,17.8],[47.2,21.8]]);
+            polygon(points=[[48,3.7],[52,7.7],[52,17.8],[48,21.8]]);
         }
     }
 }
 
 module microusb() {
-    translate([-20.5, 0, 2.5/2 + pcb_thickness/2]) {
-        cube([5.9,7.5,2.5], center = true);
+    translate([-52/2 + 5.5/2 + .5, 0, 3/2 + pcb_thickness/2]) {
+        cube([5.5,7.5,3], center = true);
     }
 }
 
 module reset_button() {
-    translate([-20.5, 8, 2.5/2 + pcb_thickness/2]) {
+    translate([-52/2 + 4/2 + 1.75, -25.5/2 + 3.2/2 + 3, 2/2 + pcb_thickness/2]) {
         cube([4,3.2,2], center = true);
     }
 }
 
 module program_button() {
-        translate([-20.5, -8, 2.5/2 + pcb_thickness/2]) {
+    translate([-52/2 + 4/2 + 1.75, 25.5/2 - 3.2/2 - 3, 2/2 + pcb_thickness/2]) {
         cube([4,3.2,2], center = true);
     }
 }
 
 module oled() {
-    translate([5.6, 0.6, 5/2 + pcb_thickness/2]) {
-        cube([33.28,18.56,5], center = true);
+    translate([5.4, 0.2, 5.2/2 + pcb_thickness/2]) {
+        cube([33.28,18.56,5.2], center = true);
     }
 }
 
@@ -102,7 +104,7 @@ module oled_ribbon() {
 }
 
 module wifi_pigtail() {
-    translate([-13.9, 7.4, 5/2 + pcb_thickness/2]) {
+    translate([-52/2 + 5/2 + 9, 25.5/2 - 5/2 - 4.4, 5/2 + pcb_thickness/2]) {
         cylinder(h=5, r=2.5, center = true);
     }
 }
@@ -114,7 +116,7 @@ module ipex_connector() {
 }
 
 module battery_jack() {
-    translate([-20.8, 0, -3.9/2 - pcb_thickness/2]) {
+    translate([-52/2 + 5.25/2 + 2.9, 0, -3.9/2 - pcb_thickness/2]) {
         cube([5.25,7.5,3.9], center = true);
     }
 }
