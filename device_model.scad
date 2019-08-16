@@ -1,7 +1,5 @@
 pcb_thickness = 1.6;
 
-device();
-
 module device() {
     $fn = 20;
 
@@ -17,36 +15,6 @@ module device() {
     ipex_connector();
     battery_jack();
     misc();
-}
-
-module device_slidex(x) {
-    $fn = 20;
-
-    slidex(x) {
-        pcb1();
-        pcb2();
-        pcb3();
-        microusb();
-        reset_button();
-        program_button();
-        oled();
-        oled_ribbon();
-        wifi_pigtail();
-        ipex_connector();
-        battery_jack();
-        misc();
-    }
-}
-
-module slidex(x) {
-    for (i = [0:1:$children-1]) {
-        hull() {
-            children(i);
-            translate([x,0,0]) {
-                children(i);
-            }
-        }
-    }
 }
 
 module pcb1() {

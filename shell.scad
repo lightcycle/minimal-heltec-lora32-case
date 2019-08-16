@@ -1,45 +1,50 @@
 include <device_model.scad>
 
-module puff(p) {
-    minkowski() {
-        children();
-        cube([p, p, p], center=true);
-    }
+module shell() {
+    $fn = 10;
+	difference() {
+		minkowski() {
+			mirrored_hull();
+			cube(1.4, center = true);
+		}
+        minkowski() {
+            union() {
+                mirrored_hull();
+                ports();
+            }
+            cube(0.4, center = true);
+        }
+	}
 }
 
-module shell() {
-    $fn = 20;
+module cutout() {
 
-    translate([0, 0, 0.6]) {
-        minkowski() {
-            resize(newsize=[51.2,25.5,7.6]) {
-                pcb1(); pcb2(); pcb3();
-            }
-            sphere(2);
+}
+
+module mirrored_hull() {
+    hull() {
+        device();
+        scale([1,-1,1]) {
+            device();
         }
-    }    
+        scale([-1,-1,1]) {
+            device();
+        }
+        scale([-1,1,1]) {
+            device();
+        }
+    }
 }
 
 module ports() {
-    // Micro-USB cutout
-    translate([-28.5, 0, 2.5/2 + pcb_thickness/2]) {
-        cube([14,7.5,2.5], center = true);
+    // Micro-USB plug
+    translate([-26 - 20/2 + 10, 0, 2.5/2 + pcb_thickness/2]) {
+        cube([20, 7.6, 2.5], center = true);
     }
     
     // Micro-USB plug body cutout
-    translate([-25, 0, 2.5/2 + pcb_thickness/2]) {
-        hull() {
-            translate([0, -3, 0]) {
-                rotate([0, 90, 0]) {
-                    cylinder(h=6,d=5, center = true, $fn = 100);
-                }
-            }
-            translate([0, 3, 0]) {
-                rotate([0, 90, 0]) {
-                    cylinder(h=6,d=5, center = true, $fn = 100);
-                }
-            }
-        }
+    translate([-26 - 20/2 - 0.9, 0, 2.5/2 + pcb_thickness/2]) {
+        cube([20, 11.4, 7.6], center = true);
     }
 
     // OLED cutout (illuminated portion)
@@ -49,42 +54,6 @@ module ports() {
     
     // IPEX Connector (extended for cutout)
     translate([24.2, 0, 1.5/2 + pcb_thickness/2]) {
-        cube([5,2.2,1.5], center = true);
-        rotate([0, 90, 0]) {
-            cylinder(h=10,r=0.75, center = true, $fn = 100);
-        }
-    }
-}
-
-module shell_slide_bottom() {
-    $fn = 20;
-    difference() {
-        shell();
-        puff(0.2) {
-            device_slidex(100);
-        }
-        ports();
-    }
-}
-
-module shell_slide_top() {
-    $fn = 20;
-    difference() {
-        shell();
-        puff(0.2) {
-            device_slidex(-100);
-        }
-        ports();
-    }
-}
-
-module shell_no_slide() {
-    $fn = 20;
-    difference() {
-        shell();
-        puff(0.3) {
-            device();
-        }
-        ports();
+        cube([20,3.2,2.5], center = true);
     }
 }

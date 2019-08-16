@@ -1,15 +1,16 @@
 include <shell.scad>
 
 difference() {
-    shell_no_slide();
-    translate([0, 0, -7.8]) {
-        scale([1, 1, 10]) {
-            translate([0, 0, 0]) {
-                pcb1(); pcb2(); pcb3();
-            }
+    shell();
+    translate([-38, 0, 0]) {
+        cube([50, 50, 50], center = true);
+    }
+    difference() {
+        scale(.97, center = true) {
+            shell();
         }
-        translate([27, 0, 4.4]) {
-            cube([5, 1.5, 10], center = true);
+        translate([17, 0, 0]) {
+            cube([50, 50, 50], center = true);
         }
     }
 }
