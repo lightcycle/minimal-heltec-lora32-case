@@ -6,7 +6,7 @@ difference() {
         cube([50, 50, 50], center = true);
     }
     difference() {
-        scale(.97, center = true) {
+        scale(.91, center = true) {
             shell();
         }
         translate([17, 0, 0]) {

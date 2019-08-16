@@ -10,7 +10,7 @@ intersection() {
 intersection() {
     shell();
     difference() {
-        scale(.96, center = true) {
+        scale(.90, center = true) {
             shell();
         }
         translate([17, 0, 0]) {

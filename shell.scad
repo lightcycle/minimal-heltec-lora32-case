@@ -5,7 +5,7 @@ module shell() {
 	difference() {
 		minkowski() {
 			mirrored_hull();
-			cube(1.4, center = true);
+			cube(4, center = true);
 		}
         minkowski() {
             union() {
