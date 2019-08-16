@@ -1,43 +1,29 @@
 include <shell.scad>
 include <logo.scad>
 
-difference() {
-    shell_slide_top();
-    
-    translate([7.7-60, 0, 0]) {
-        cube([60, 30, 20], center = true);
-    }
-    
-    translate([7.6 - 60/2 + 2.5, 13.3, 4.6]) {
-        rotate([0, 90, 0]) {
-            cylinder(h=5, r=1, $fn=100, center=true);
+scale(0.98) {
+    difference() {
+        intersection() {
+            shell_no_slide();
+            translate([0, 0, -7.8]) {
+                scale([1, 1, 10]) {
+                    translate([0, 0, 0]) {
+                        pcb1(); pcb2(); pcb3();
+                    }
+                }
+                translate([27, 0, 4.4]) {
+                    cube([5, 1.5, 10], center = true);
+                }
+            }
         }
-    }
-
-    translate([7.6 - 60/2 + 2.5, -13.3, 4.6]) {
-        rotate([0, 90, 0]) {
-            cylinder(h=5, r=1, $fn=100, center=true);
-        }
-    }
-
-    translate([7.6 - 60/2 + 2.5, 13.3, -2.7]) {
-        rotate([0, 90, 0]) {
-            cylinder(h=5, r=1, $fn=100, center=true);
-        }
-    }
-
-    translate([7.6 - 60/2 + 2.5, -13.3, -2.7]) {
-        rotate([0, 90, 0]) {
-            cylinder(h=5, r=1, $fn=100, center=true);
-        }
-    }
-    
-    translate([-15, 11.5, -5.2]) {
-        rotate([0, 0, 270]) {
-            linear_extrude(height = 2) {
-                rotate([0, 0, 0]) {
-                    scale(0.07) {
-                        logoPolygon();
+        
+        translate([-15, 11.5, -5.2]) {
+            rotate([0, 0, 270]) {
+                linear_extrude(height = 0.7) {
+                    rotate([0, 0, 0]) {
+                        scale(0.07) {
+                            logoPolygon();
+                        }
                     }
                 }
             }
